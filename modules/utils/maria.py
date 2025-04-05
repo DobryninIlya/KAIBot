@@ -3,6 +3,7 @@ from config import db_data
 
 class Maria:
     def __init__(self):
+        print("Credentials:", db_data)
         self.hostname = db_data[0]
         self.user = db_data[1]
         self.password = db_data[2]
