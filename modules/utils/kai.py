@@ -11,7 +11,7 @@ class KAI:
         self.login = login
         self.password = password
         self.token = kai_token
-        self.session = ClientSession(base_url=URL("https://schedule-bot.kai.ru/"))
+        self.session = ClientSession(base_url=URL("https://capypara.ru/"))
         
     async def check_valid_group(self, group: str) -> bool:
         return bool((await self.requester(f"/api/schedule_public/groups", params = {"query": group})).get("result", {}).get("groups", []))
@@ -54,7 +54,7 @@ class KAI:
         self.session._base_url = URL("https://kai.ru/")
         self.token = None
         page = await self.requester("/infoClick/-/info/group", params = {"id": group_id}, output = "text")
-        self.session._base_url = URL("https://schedule-bot.kai.ru/")
+        self.session._base_url = URL("https://capypara.ru/")
         page = bs4(page, "lxml").find("tbody")
         if not page: return []
         page = page.find_all("tr")
@@ -70,7 +70,7 @@ class KAI:
         self.session._base_url = URL("https://kai.ru/")
         self.token = None
         page = await self.requester("/infoClick/-/info/group", params = {"id": group_id}, output = "text")
-        self.session._base_url = URL("https://schedule-bot.kai.ru/")
+        self.session._base_url = URL("https://capypara.ru/")
         page = bs4(page, "lxml").find("tbody")
         if not page: return 0
         page = page.find_all("tr")
