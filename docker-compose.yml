@@ -1,13 +1,17 @@
-version: "3.9"
 services:
   bot:
     build: .
-    container_name: telegram-bot
+    restart: unless-stopped
     environment:
-      API_TOKEN: ${API_TOKEN}
-      KAI_TOKEN: ${KAI_TOKEN}
-      DB_HOST: ${DB_HOST}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
-    restart: always
+      - API_TOKEN=${API_TOKEN}
+      - KAI_TOKEN=${KAI_TOKEN}
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+    networks:
+      - coolify
+
+networks:
+  coolify:
+    external: true
